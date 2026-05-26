@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
 client = AsyncIOMotorClient(MONGODB_URI)
 db = client.salon_db
@@ -16,7 +15,6 @@ reviews_collection = db.get_collection("reviews")
 users_collection = db.get_collection("users")
 messages_collection = db.get_collection("messages")
 
-# Create indexes for better performance
 async def create_indexes():
     # Bookings indexes
     await bookings_collection.create_index("booking_date")
